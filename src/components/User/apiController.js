@@ -1,6 +1,4 @@
 const UserService = require('./service');
-const UserValidation = require('./validation');
-const ValidationError = require('../../error/ValidationError');
 const tryCatcher = require('./tryCatcher');
 
 /**
@@ -10,7 +8,7 @@ const tryCatcher = require('./tryCatcher');
  * @param {express.NextFunction} next
  * @returns {Promise < void >}
  */
-async function findAll(req, res, next) {
+async function findAll(req, res) {
     const users = await UserService.findAll();
     res.status(200).json({
         data: users,
@@ -24,13 +22,7 @@ async function findAll(req, res, next) {
  * @param {express.NextFunction} next
  * @returns {Promise < void >}
  */
-async function findById(req, res, next) {
-    const { error } = UserValidation.findById(req.params);
-
-    if (error) {
-        throw new ValidationError(error.details);
-    }
-
+async function findById(req, res) {
     const user = await UserService.findById(req.params.id);
 
     return res.status(200).json({
@@ -45,13 +37,7 @@ async function findById(req, res, next) {
  * @param {express.NextFunction} next
  * @returns {Promise < void >}
  */
-async function create(req, res, next) {
-    const { error } = UserValidation.create(req.body);
-
-    if (error) {
-        throw new ValidationError(error.details);
-    }
-
+async function create(req, res) {
     const user = await UserService.create(req.body);
 
     return res.status(200).json({
@@ -66,13 +52,7 @@ async function create(req, res, next) {
  * @param {express.NextFunction} next
  * @returns {Promise<void>}
  */
-async function updateById(req, res, next) {
-    const { error } = UserValidation.updateById(req.body);
-
-    if (error) {
-        throw new ValidationError(error.details);
-    }
-
+async function updateById(req, res) {
     const updatedUser = await UserService.updateById(req.body.id, req.body);
 
     return res.status(200).json({
@@ -87,13 +67,7 @@ async function updateById(req, res, next) {
  * @param {express.NextFunction} next
  * @returns {Promise<void>}
  */
-async function deleteById(req, res, next) {
-    const { error } = UserValidation.deleteById(req.body);
-
-    if (error) {
-        throw new ValidationError(error.details);
-    }
-
+async function deleteById(req, res) {
     const deletedUser = await UserService.deleteById(req.body.id);
 
     return res.status(200).json({
