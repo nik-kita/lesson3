@@ -1,5 +1,6 @@
 const { Router } = require('express');
-const UserComponent = require('./apiController');
+const UserApiComponent = require('./apiController');
+const UserUiComponent = require('./uiController');
 
 /**
  * Express router to mount user related functions on.
@@ -10,52 +11,57 @@ const apiRouter = Router();
 
 /**
  * Route serving list of users.
- * @name /v1/users
+ * @name /v1/api/users
  * @function
  * @inner
  * @param {string} path - Express path
  * @param {callback} middleware - Express middleware.
  */
-apiRouter.get('/', UserComponent.findAll);
+apiRouter.get('/', UserApiComponent.findAll);
 
 /**
  * Route serving a user
- * @name /v1/users/:id
+ * @name /v1/api/users/:id
  * @function
  * @inner
  * @param {string} path - Express path
  * @param {callback} middleware - Express middleware.
  */
-apiRouter.get('/:id', UserComponent.findById);
+apiRouter.get('/:id', UserApiComponent.findById);
 
 /**
  * Route serving a new user
- * @name /v1/users
+ * @name /v1/api/users
  * @function
  * @inner
  * @param {string} path - Express path
  * @param {callback} middleware - Express middleware
  */
-apiRouter.post('/', UserComponent.create);
+apiRouter.post('/', UserApiComponent.create);
 
 /**
  * Route serving a new user
- * @name /v1/users
+ * @name /v1/api/users
  * @function
  * @inner
  * @param {string} path - Express path
  * @param {callback} middleware - Express middleware
  */
-apiRouter.put('/', UserComponent.updateById);
+apiRouter.put('/', UserApiComponent.updateById);
 
 /**
  * Route serving a new user
- * @name /v1/users
+ * @name /v1/api/users
  * @function
  * @inner
  * @param {string} path -Express path
  * @param {callback} middleware - Express middleware
  */
-apiRouter.delete('/', UserComponent.deleteById);
+apiRouter.delete('/', UserApiComponent.deleteById);
+
+const uiRouter = new Router();
+
+uiRouter.get('/', UserUiComponent.index);
 
 module.exports.api = apiRouter;
+module.exports.ui = uiRouter;

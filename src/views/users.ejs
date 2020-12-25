@@ -1,34 +1,47 @@
-<%- include('layouts/head') -%> 
+<%- include('layouts/head') %>
 
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
-  </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-1">
+            </div>
+            <div class="col">
 
-<%- include('layouts/foot') -%>
+                <table class="table table-striped">
+                    <h1>Users</h1>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Full name</th>
+                            <th scope="col">Age</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% let zero=0; %>
+                            <% users.forEach((u)=> { %>
+                                <tr>
+                                    <th scope="row">
+                                        <%= ++zero %>
+                                    </th>
+                                    <td>
+                                        <%= u.email; %>
+                                    </td>
+                                    <td>
+                                        <%= u.fullName; %>
+                                    </td>
+                                    <td>
+                                        <%= u.age || '-' ; %>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                    </tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-1">
+            </div>
+        </div>
+    </div>
+
+<%- include('layouts/foot') %>

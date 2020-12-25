@@ -111,7 +111,7 @@ const apiCatcher = {
 };
 
 const uiCatcher = {
-
+    index(fn) { return fn; },
 };
 
 module.exports = {
