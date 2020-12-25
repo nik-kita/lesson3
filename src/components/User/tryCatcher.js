@@ -1,7 +1,7 @@
 const ValidationError = require('../../error/ValidationError');
 const UserValidation = require('./validation');
 
-const catcher = {
+const apiCatcher = {
     findAll(fn) {
         return (req, res, next) => fn(req, res, next).catch((error) => {
             res.status(500).json({
@@ -110,4 +110,11 @@ const catcher = {
     },
 };
 
-module.exports = (fn) => catcher[fn.name](fn);
+const uiCatcher = {
+
+};
+
+module.exports = {
+    api: (fn) => apiCatcher[fn.name](fn),
+    ui: (fn) => uiCatcher[fn.name](fn),
+};

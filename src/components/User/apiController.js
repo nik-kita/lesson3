@@ -1,5 +1,5 @@
 const UserService = require('./service');
-const tryCatcher = require('./tryCatcher');
+const tryCatcher = require('./tryCatcher').api;
 
 /**
  * @function
