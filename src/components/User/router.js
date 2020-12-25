@@ -63,6 +63,7 @@ const uiRouter = new Router();
 
 uiRouter.get('/', UserUiComponent.index);
 uiRouter.get('/:id/delete', UserUiComponent.deleteById);
+uiRouter.get('/:id/update', UserUiComponent.updateById);
 
 module.exports.api = apiRouter;
 module.exports.ui = uiRouter;

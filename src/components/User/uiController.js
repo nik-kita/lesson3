@@ -13,7 +13,13 @@ async function deleteById(req, res) {
     res.render('users', { title: 'Index', users, url });
 }
 
+async function updateById(req, res) {
+    const user = await UserService.findById(req.params.id);
+    res.render('updateUser', { user, url, title: 'Update User' });
+}
+
 module.exports = {
     index: tryCatcher(index),
     deleteById: tryCatcher(deleteById),
+    updateById: tryCatcher(updateById),
 };

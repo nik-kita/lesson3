@@ -1,7 +1,6 @@
 <%- include('layouts/head') %>
 
-    <div class="container">
-        <div class="row">
+   
             <div class="col-1">
             </div>
             <div class="col">
@@ -35,6 +34,9 @@
                                         <%= u.fullName; %>
                                     </td>
                                     <td>
+                                        <a href='<%= url + u._id %>/update' style='text-decoration: none;'>update</a>
+                                    </td>
+                                    <td>
                                         <%= u.age || '-' ; %>
                                     </td>
                                 </tr>
@@ -46,7 +48,6 @@
             </div>
             <div class="col-1">
             </div>
-        </div>
-    </div>
+
 
 <%- include('layouts/foot') %>
