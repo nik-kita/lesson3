@@ -14,13 +14,13 @@ module.exports = {
 
         /**
          * Forwards any requests to the /v1/users URI to UserRouter.
-         * @name /v1/users
+         * @name /v1/api/users
          * @function
          * @inner
          * @param {string} path - Express path
          * @param {callback} middleware - Express middleware.
          */
-        app.use('/v1/users', UserRouter);
+        app.use('/v1/api/users', UserRouter);
 
         /**
          * @description No results returned mean the object is not found
