@@ -18,8 +18,15 @@ async function updateById(req, res) {
     res.render('updateUser', { user, url, title: 'Update User' });
 }
 
+async function update(req, res) {
+    await UserService.updateById(req.params.id, req.body);
+    const users = await UserService.findAll();
+    res.render('users', { title: 'Index', users, url });
+}
+
 module.exports = {
     index: tryCatcher(index),
     deleteById: tryCatcher(deleteById),
     updateById: tryCatcher(updateById),
+    update: tryCatcher(update),
 };

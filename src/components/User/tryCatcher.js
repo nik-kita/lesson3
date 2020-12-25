@@ -105,7 +105,7 @@ const uiCatcher = {
     index(fn) { return fn; },
     deleteById(fn) { return fn; },
     updateById(fn) { return fn; },
-
+    update(fn) { return fn; },
 };
 
 module.exports = {
