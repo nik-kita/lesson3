@@ -34,6 +34,7 @@ class UserValidation extends Validation {
                     .min(1)
                     .max(30)
                     .required(),
+                age: this.Joi.number().integer(),
             })
             .validate(profile);
     }

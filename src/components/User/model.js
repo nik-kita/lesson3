@@ -11,6 +11,7 @@ const UserSchema = new Schema(
             type: String,
             required: true,
         },
+        age: Number,
     },
     {
         collection: 'usermodel',

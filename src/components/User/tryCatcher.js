@@ -19,19 +19,17 @@ const apiCatcher = {
                     throw new ValidationError(error.details);
                 }
 
-                return fn(req, res, next);
-            } catch (error) {
-                if (error instanceof ValidationError) {
-                    return res.status(422).json({
-                        error: error.name,
-                        details: error.message,
+                return fn(req, res, next).catch((err) => {
+                    res.status(500).json({
+                        message: err.name,
+                        details: err.message,
                     });
-                }
-                res.status(500).json({
-                    message: error.name,
+                });
+            } catch (error) {
+                return res.status(422).json({
+                    error: error.name,
                     details: error.message,
                 });
-                return next(error);
             }
         };
     },
@@ -43,19 +41,17 @@ const apiCatcher = {
                     throw new ValidationError(error.details);
                 }
 
-                return fn(req, res, next);
-            } catch (error) {
-                if (error instanceof ValidationError) {
-                    return res.status(422).json({
-                        message: error.name,
-                        details: error.message,
+                return fn(req, res, next).catch((err) => {
+                    res.status(500).json({
+                        message: err.name,
+                        details: err.message,
                     });
-                }
-                res.status(500).json({
+                });
+            } catch (error) {
+                return res.status(422).json({
                     message: error.name,
                     details: error.message,
                 });
-                return next(error);
             }
         };
     },
@@ -67,19 +63,17 @@ const apiCatcher = {
                     throw new ValidationError(error.details);
                 }
 
-                return fn(req, res, next);
-            } catch (error) {
-                if (error instanceof ValidationError) {
-                    return res.status(422).json({
-                        message: error.name,
-                        details: error.message,
+                return fn(req, res, next).catch((err) => {
+                    res.status(500).json({
+                        message: err.name,
+                        details: err.message,
                     });
-                }
-                res.status(500).json({
+                });
+            } catch (error) {
+                return res.status(422).json({
                     message: error.name,
                     details: error.message,
                 });
-                return next(error);
             }
         };
     },
@@ -87,24 +81,21 @@ const apiCatcher = {
         return (req, res, next) => {
             try {
                 const { error } = UserValidation.deleteById(req.body);
-
                 if (error) {
                     throw new ValidationError(error.details);
                 }
 
-                return fn(req, res, next);
-            } catch (error) {
-                if (error instanceof ValidationError) {
-                    return res.status(422).json({
-                        message: error.name,
-                        details: error.message,
+                return fn(req, res, next).catch((err) => {
+                    res.status(500).json({
+                        message: err.name,
+                        details: err.message,
                     });
-                }
-                res.status(500).json({
+                });
+            } catch (error) {
+                return res.status(422).json({
                     message: error.name,
                     details: error.message,
                 });
-                return next(error);
             }
         };
     },
