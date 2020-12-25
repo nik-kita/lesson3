@@ -38,5 +38,5 @@ module.exports = {
          * @param {express.Router}
          */
         app.use(router);
-    },
+    }
 };
