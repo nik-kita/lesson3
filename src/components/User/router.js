@@ -62,6 +62,7 @@ apiRouter.delete('/', UserApiComponent.deleteById);
 const uiRouter = new Router();
 
 uiRouter.get('/', UserUiComponent.index);
+uiRouter.get('/:id/delete', UserUiComponent.deleteById);
 
 module.exports.api = apiRouter;
 module.exports.ui = uiRouter;

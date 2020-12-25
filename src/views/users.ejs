@@ -12,7 +12,9 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Email</th>
+                            <th scope="col"></th>
                             <th scope="col">Full name</th>
+                            <th scope="col"></th>
                             <th scope="col">Age</th>
                         </tr>
                     </thead>
@@ -25,6 +27,9 @@
                                     </th>
                                     <td>
                                         <%= u.email; %>
+                                    </td>
+                                    <td>
+                                        <a href='<%= url + u._id %>/delete' style='text-decoration: none;'>delete</a>
                                     </td>
                                     <td>
                                         <%= u.fullName; %>
