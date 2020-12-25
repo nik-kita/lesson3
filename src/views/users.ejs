@@ -1,12 +1,10 @@
 <%- include('layouts/head') %>
-
-   
-            <div class="col-1">
-            </div>
+<%- include('layouts/sidebar') %> 
             <div class="col">
-
+                
+                <h1>Users</h1>
                 <table class="table table-striped">
-                    <h1>Users</h1>
+                    <a class="btn btn-primary" href='<%= url %>create' role="button">Create new User</a>
                     <thead>
                         <tr>
                             <th scope="col">#</th>

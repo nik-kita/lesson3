@@ -24,9 +24,21 @@ async function update(req, res) {
     res.render('users', { title: 'Index', users, url });
 }
 
+async function create(req, res) {
+    res.render('createUser', { title: 'Create User', url });
+}
+
+async function store(req, res) {
+    await UserService.create(req.body);
+    const users = await UserService.findAll();
+    res.render('users', { title: 'Index', users, url });
+}
+
 module.exports = {
     index: tryCatcher(index),
     deleteById: tryCatcher(deleteById),
     updateById: tryCatcher(updateById),
     update: tryCatcher(update),
+    create: tryCatcher(create),
+    store: tryCatcher(store),
 };
