@@ -101,13 +101,52 @@ const apiCatcher = {
     },
 };
 
+const url = 'http://127.0.0.1:3000/v1/users/';
+
 const uiCatcher = {
-    index(fn) { return fn; },
+    index(fn) {
+        return (req, res, next) => fn(req, res, next).catch((error) => {
+            res.render('error', {
+                status: 500,
+                error: error.name,
+                massage: error.mesage,
+            });
+            next(error);
+        });
+    },
     deleteById(fn) { return fn; },
     updateById(fn) { return fn; },
     update(fn) { return fn; },
     create(fn) { return fn; },
-    store(fn) { return fn; },
+    store(fn) {
+        return (req, res, next) => {
+            try {
+                const { error } = UserValidation.create(req.body);
+                if (error) {
+                    throw new ValidationError(error.details);
+                }
+
+                return fn(req, res, next).catch((err) => {
+                    res.render('error', {
+                        url,
+                        title: 'Ooops...',
+                        status: 500,
+                        error: err.name,
+                        message: err.message,
+                    });
+                    next(error);
+                });
+            } catch (error) {
+                return res.status(422).render('error', {
+                    url,
+                    title: 'Error!',
+                    status: 422,
+                    error: error.name,
+                    message: JSON.stringify(error.message),
+                });
+            }
+        };
+    },
 };
 
 module.exports = {
